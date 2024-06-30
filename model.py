@@ -9,22 +9,22 @@ class HMM_ensemble(torch.nn.Module):
     Hidden Markov Model with discrete observations.
     """
     def __init__(self, n_state_list, m_dimensions, max_iterations = 100,
-                tolerance = 0.1, verbose = True, lambda_initate_list = None,
+                tolerance = 0.1, verbose = True, 
                 certainty = 0.01, confidence_rate = 1.5, entropy_threshold = 0.1,
                 ensemble_assignment = None, high_prob = 0.5, entropy_break = 5):
         super(HMM_ensemble, self).__init__()
-        self.n_state_list = n_state_list  # number of states
+        self.n_state_list = n_state_list  # Number of states
         self.T_max = None # Max time step
-        self.m_dimensions = m_dimensions
-        self.num_latent_variables = len(self.n_state_list)
+        self.m_dimensions = m_dimensions # Dimensions of the data. Number of features
+        self.num_latent_variables = len(self.n_state_list) # Number of Ensemble Latent Variables  
         
-        self.max_iterations = max_iterations 
-        self.tolerance = tolerance
+        self.max_iterations = max_iterations # Max iterations
+        self.tolerance = tolerance  # Log-likelihood change threshold 
         self.entropy_break = entropy_break # Number of iterations after zero entropy
 
         self.epsilon = 1e-32 #To ensure positive proabilities
 
-        self.verbose = verbose
+        self.verbose = verbose 
         
         self.test_sum_list = []
 
